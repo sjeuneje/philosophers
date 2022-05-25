@@ -1,13 +1,19 @@
 #include "philo.h"
-#include "threads_utils.h"
+#include "errors_handler.h"
+#include "init_params.h"
+
+// 1. parsing
+// 2. init philos structs
+// 3. exec philo
 
 int	main(int ac, char **av)
 {
-	pthread_t	*threads;
+	t_params	params;
 
-	threads = init_threads(2);
-	if (!threads)
+	if (error_handler(ac, av))
 		return (1);
-	close_threads(threads);
+	if (init_params(&params, ac, av))
+		return (1);
+	printf("ok\n");
 	return (0);
 }
