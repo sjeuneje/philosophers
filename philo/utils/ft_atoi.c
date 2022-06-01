@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "string_utils.h"
 
 static	int	ft_count_numbers(const char *str)
 {
