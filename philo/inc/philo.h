@@ -17,9 +17,11 @@ typedef struct	s_params
 
 typedef struct	s_philo
 {
-	int			num;
-	pthread_t	t;
-	t_params	*params;
+	int					num;
+	pthread_t			t;
+	t_params			*params;
+	pthread_mutex_t		*fork_l;
+	pthread_mutex_t		*fork_r;
 }				t_philo;
 
-#endif 
+#endif

@@ -1,14 +1,9 @@
 #include "errors_handler.h"
 #include "string_utils.h"
 
-static int	print_error(int code)
+static int	print_error()
 {
-	if (code == 0)
-		printf("Error: incorrect number of arguments.\n");
-	else if (code == 1)
-		printf("Error: only numbers are accepted as arguments.\n");
-	else if (code == 2)
-		printf("Error: a number is over or underflow.\n");
+	printf("Error: wrong argument(s).\n");
 	return (1);
 }
 
@@ -61,10 +56,10 @@ static int	check_args(char **ar)
 int	error_handler(int ac, char **ar)
 {
 	if (ac != 5 && ac != 6)
-		return (print_error(0));
+		return (print_error());
 	if (!check_args(ar))
-		return (print_error(1));
+		return (print_error());
 	if (!in_limits(ar))
-		return (print_error(2));
+		return (print_error());
 	return (0);
 }

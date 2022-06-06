@@ -1,29 +1,54 @@
 #include "philo.h"
 #include "threads_handler.h"
+#include "mutex_handler.h"
 
-void    *routine()
+int	is_eating(int ms)
 {
-    printf("ok\n");
+	cur_time = ft_get_time();
+	while ()
+	usleep(ms * 1000);
+	return (0);
+}
+
+void    *routine(void *args)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)args;
+	while (1)
+	{
+		pthread_mutex_lock(philo->fork_l); // pas oublier de protéger
+		printf("%d %d has taken a fork", philo->params->t_eat, philo->params->n_philo); // transformer t eat avec gettimeofday ...
+		pthread_mutex_lock(philo->fork_r);
+		printf("%d %d has taken a fork", philo->params->t_eat, philo->params->n_philo); // transformer t eat avec gettimeofday ...
+		while (is_eating(philo->params->t_sleep))
+		{
+			printf("")
+		}
+	}
     return (NULL);
 }
 
-void    *init_philos(t_params *params)
+int	launch_threads(t_philo *philos)
 {
-    int     i;
-    t_philo *philos;
+	int	i;
 
-    i = 0;
-    philos = malloc(params->n_philo * sizeof(t_philo));
-    if (!philos)
-        return (NULL);
-    while (i < params->n_philo)
-    {
-        philos[i].num = i + 1;
-        philos[i].params = params;
-        if (!pthread_create(&philos[i].t, NULL, &routine, NULL))
-            return (NULL);
-        if (!pthread_join(philos[i].t, NULL))
-            return (NULL);
-    }
-    return (philos);
+	i = 0;
+	if (!init_mutex(philos))
+		return (0);
+	while (i < philos->params->n_philo)
+	{
+		if (pthread_create(&philos[i].t, NULL, &routine, (void *)&philos[i]) != 0)
+			return (0);
+		i++;
+	}
+	// destroy mutex
+	i = 0;
+	while (i < philos->params->n_philo)
+	{
+		if (pthread_join(philos[i].t, NULL) != 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

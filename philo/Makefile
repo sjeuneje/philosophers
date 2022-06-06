@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = src/init_params.c src/main.c src/threads_handler.c\
+SRCS = src/init_params.c src/main.c src/threads_handler.c src/mutex_handler.c\
 		utils/errors_handler.c utils/ft_atoi.c utils/ft_isdigit.c\
 
 OBJS = ${SRCS:.c=.o}
@@ -20,21 +20,18 @@ C_O = \
     fi
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC) $(C_THREADS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 all:	${NAME}
 
 $(NAME): ${OBJS}
 		$(CC) ${CFLAGS} $(INC) $(C_THREADS) $(OBJS) -o $(NAME)
-#		@$(C_O)
-#		@mv $(OBJS) objs/
 
 exe:	${OBJS}
 		$(CC) ${CFLAGS} $(OBJS) -o $(NAME)
 		${RM} ${OBJS}
 clean:
 		${RM} ${OBJS}
-#		@rm -rf objs\
 
 fclean:	clean
 		${RM} ${NAME}
