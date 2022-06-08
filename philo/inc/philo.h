@@ -18,10 +18,16 @@ typedef struct	s_params
 typedef struct	s_philo
 {
 	int					num;
+	int					is_alive;
 	pthread_t			t;
-	t_params			*params;
 	pthread_mutex_t		*fork_l;
 	pthread_mutex_t		*fork_r;
 }				t_philo;
+
+typedef struct	s_data
+{
+	int		nbr;
+	t_philo	*philos;
+}				t_data;
 
 #endif

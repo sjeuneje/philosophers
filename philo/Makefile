@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = src/init_params.c src/main.c src/threads_handler.c src/mutex_handler.c\
+SRCS = src/init_params.c src/main.c\
 		utils/errors_handler.c utils/ft_atoi.c utils/ft_isdigit.c\
 
 OBJS = ${SRCS:.c=.o}
