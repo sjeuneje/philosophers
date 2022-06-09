@@ -1,7 +1,6 @@
 NAME = philo
 
-SRCS = src/init_params.c src/main.c\
-		utils/errors_handler.c utils/ft_atoi.c utils/ft_isdigit.c\
+SRCS = src/main.c src/errors.c src/init.c src/utils.c src/threads.c\
 
 OBJS = ${SRCS:.c=.o}
 
@@ -10,14 +9,9 @@ RM		= rm -f
 
 CFLAGS = -Wall -Wextra -Werror
 
-INC = -I inc/
+INC = -I incl/
 
-C_THREADS = -lpthread
-
-C_O = \
-    if [ ! -e  "objs" ]; then \
-    mkdir objs; \
-    fi
+C_THREADS = -lpthread -g3
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
