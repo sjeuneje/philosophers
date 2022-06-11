@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = src/main.c src/errors.c src/init.c src/utils.c src/threads.c\
+SRCS = src/main.c src/errors.c src/init.c src/utils.c src/threads.c src/actions.c\
 
 OBJS = ${SRCS:.c=.o}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjeuneje <sjeuneje@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sacha <sacha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:20:37 by sjeuneje          #+#    #+#             */
-/*   Updated: 2022/06/09 18:45:25 by sjeuneje         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:37:11 by sacha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+struct s_data;
+
 typedef struct	s_philo
 {
 	int					num;
@@ -28,6 +30,7 @@ typedef struct	s_philo
 	pthread_t			t;
 	pthread_mutex_t		*fork_l;
 	pthread_mutex_t		*fork_r;
+	struct s_data		*data;
 }				t_philo;
 
 typedef struct	s_data
@@ -60,5 +63,10 @@ unsigned long	ft_get_time();
 
 /* threads */
 int	launch_threads(t_data *data);
+
+/* actions */
+void	print_message(t_philo *philo, char *message);
+void	ft_wait_philo(int ms);
+void	is_eating(t_philo *philo);
 
 #endif

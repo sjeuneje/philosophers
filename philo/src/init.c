@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjeuneje <sjeuneje@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sacha <sacha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:18:14 by sjeuneje          #+#    #+#             */
-/*   Updated: 2022/06/09 18:27:58 by sjeuneje         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:43:20 by sacha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	init_philos(t_data *data)
 	while (++i < data->nb_philo)
 	{
 		philos[i].num = i + 1;
+		philos[i].data = data;
 		philos[i].nb_eats = data->nb_philo_must_eat;
 		philos[i].is_alive = 1;
 		philos[i].last_eat = ft_get_time();
