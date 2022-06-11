@@ -37,6 +37,9 @@ typedef struct	s_data
 	int	time_die;
 	int	time_eat;
 	int	time_sleep;
+	int	full;
+	int stop;
+	unsigned long	start_time;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	talk;
@@ -47,7 +50,7 @@ typedef struct	s_data
 int				error_handler(int ac, char **ar);
 
 /* init */
-void			init_params(t_data *data, int ac, char **ar);
+int				init_params(t_data *data, int ac, char **ar);
 int				init_philos(t_data *data);
 int				init_forks(t_data *data);
 

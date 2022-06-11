@@ -12,8 +12,10 @@
 
 #include "philo.h"
 
-void	init_params(t_data *data, int ac, char **ar)
+int	init_params(t_data *data, int ac, char **ar)
 {
+	data->forks = NULL;
+	data->philos = NULL;
 	data->nb_philo = ft_atoi(ar[1]);
 	data->time_die = ft_atoi(ar[2]);
 	data->time_eat = ft_atoi(ar[3]);
@@ -22,6 +24,11 @@ void	init_params(t_data *data, int ac, char **ar)
 		data->nb_philo_must_eat = ft_atoi(ar[5]);
 	else
 		data->nb_philo_must_eat = 0;
+	if (pthread_mutex_init(&(data->talk), NULL))
+		return (0);
+	if (pthread_mutex_init(&(data->eat), NULL))
+		return (0);
+	return (1);
 }
 
 int	init_forks(t_data *data)
