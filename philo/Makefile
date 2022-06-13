@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 INC = -I incl/
 
-C_THREADS = -lpthread -g3
+C_THREADS = -lpthread
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
@@ -19,7 +19,7 @@ C_THREADS = -lpthread -g3
 all:	${NAME}
 
 $(NAME): ${OBJS}
-		$(CC) ${CFLAGS} $(INC) $(C_THREADS) $(OBJS) -o $(NAME)
+		$(CC) ${CFLAGS} $(INC) $(OBJS) $(C_THREADS) -o $(NAME)
 
 exe:	${OBJS}
 		$(CC) ${CFLAGS} $(OBJS) -o $(NAME)

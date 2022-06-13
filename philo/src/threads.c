@@ -71,11 +71,13 @@ int	launch_threads(t_data *data)
 	data->stop = 0;
 	data->full = 0;
 	while (++i < data->nb_philo)
-		if (pthread_create(&data->philos[i].t, NULL, routine_philo, &(data->philos[i]))) return (0);
+		if (pthread_create(&data->philos[i].t, NULL, routine_philo, &(data->philos[i]))) 
+			return (0);
 	threads_monitoring(data);
 	pthread_mutex_unlock(&(data->talk));
 	i = -1;
 	while (++i < data->nb_philo)
-		if (pthread_join(data->philos[i].t, NULL)) return (1);
+		if (pthread_join(data->philos[i].t, NULL)) 
+			return (1);
 	return (1);
 }
